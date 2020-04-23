@@ -1,0 +1,31 @@
+import pandas as pd
+path1 = "C:/Users/Administrator/exercise_data/chipotle.tsv"
+chipo = pd.read_csv(path1, sep = '\t')
+chipo.head(10)
+chipo.shape[1]
+chipo.columns
+chipo.index
+c = chipo[['item_name','quantity']].groupby(['item_name'],as_index=False).agg({'quantity':sum})
+c.sort_values(['quantity'],ascending=False,inplace=True)
+c.head()
+#寻找被下单数最多的商品是什么
+chipo['item_name'].nunique()
+#在item_name这一列中，一共有多少种商品被下单？
+chipo['choice_description'].value_counts().head()
+#在choice_description中，下单次数最多的商品是什么？
+total_items_orders = chipo['quantity'].sum()
+total_items_orders
+#一共有多少商品被下单？
+dollarizer = lambda x: float(x[1:-1])
+chipo['item_price'] = chipo['item_price'].apply(dollarizer)
+#将item_price转换为浮点数
+chipo['sub_total'] = round(chipo['item_price'] * chipo['quantity'],2)
+chipo['sub_total'].sum()
+#在该数据集对应的时期内，收入(revenue)是多少
+chipo['order_id'].nunique()
+#在该数据集对应的时期内，一共有多少订单？
+chipo[['order_id','sub_total']].groupby(by=['order_id']
+).agg({'sub_total':'sum'})['sub_total'].mean()
+#每一单(order)对应的平均总价是多少？
+chipo['item_name'].nunique()
+#一共有多少种不同的商品被售出？

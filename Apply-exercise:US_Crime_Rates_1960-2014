@@ -1,0 +1,20 @@
+import numpy as np
+import pandas as pd
+path4 = "C:/Users/Administrator/exercise_data/US_Crime_Rates_1960_2014.csv"
+crime = pd.read_csv(path4)
+crime.head()
+crime.info()
+crime.Year = pd.to_datetime(crime.Year, format='%Y')
+#将Year的数据类型转换为 datetime64
+crime = crime.set_index('Year', drop = True)
+crime.head()
+#将列Year设置为数据框的索引
+del crime['Total']
+crime.head()
+crime.resample('10AS').sum()
+crimes = crime.resample('10AS').sum() # resample a time series per decades
+population = crime['Population'].resample('10AS').max()
+crimes['Population'] = population
+#按照Year对数据框进行分组并求和
+crime.idxmax(0)
+#何时是美国历史上生存最危险的年代？

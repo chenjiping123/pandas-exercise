@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 %matplotlib inline
-path7 = "C:/Users/Administrator/exercise_data/chipotle.tsv"
+path7 = "C:/Users/Administrator/exercise_data/train.csv"
 titanic = pd.read_csv(path7)
 titanic.head()
 titanic.set_index('PassengerId').head()

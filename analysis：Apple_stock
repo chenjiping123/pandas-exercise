@@ -1,0 +1,32 @@
+import pandas as pd
+import numpy as np
+
+# visualization
+import matplotlib.pyplot as plt
+
+%matplotlib inline
+path9 = '../input/pandas_exercise/exercise_data/Apple_stock.csv'
+apple = pd.read_csv(path9)
+apple.head()
+apple.dtypes
+apple.Date = pd.to_datetime(apple.Date)
+apple['Date'].head()
+apple = apple.set_index('Date')
+apple.head()
+apple.index.is_unique
+apple.sort_index(ascending = True).head()
+apple_month = apple.resample('BM')
+#找到每个月的最后一个交易日(business day)
+apple_month.head()
+(apple.index.max() - apple.index.min()).days
+#数据集中最早的日期和最晚的日期相差多少天？
+apple_months = apple.resample('BM').mean()
+len(apple_months.index)
+#在数据中一共有多少个月？
+# makes the plot and assign it to a variable
+appl_open = apple['Adj Close'].plot(title = "Apple Stock")
+
+# changes the size of the graph
+fig = appl_open.get_figure()
+fig.set_size_inches(13.5, 9)
+#按照时间顺序可视化Adj Close值

@@ -1,0 +1,24 @@
+import pandas as pd
+path10 ='../input/pandas_exercise/exercise_data/iris.csv' 
+iris = pd.read_csv(path10)
+iris.head()
+iris = pd.read_csv(path10,names = ['sepal_length','sepal_width', 'petal_length', 'petal_width', 'class'])
+iris.head()
+#创建数据框
+pd.isnull(iris).sum()
+iris.iloc[10:20,2:3] = np.nan
+iris.head(20)
+#设置缺失值
+iris.petal_length.fillna(1, inplace = True)
+iris（）
+#缺失值替换
+del iris['class']
+iris.head() 
+iris.iloc[0:3 ,:] = np.nan
+iris.head()
+iris = iris.dropna(how='any')
+iris.head(）
+#删除有缺失值的行
+iris = iris.reset_index(drop = True)
+iris.head()
+#重新设置索引
